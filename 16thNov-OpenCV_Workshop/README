@@ -1,0 +1,165 @@
+## Gesture Dino Game — Documentation
+
+### 🎯 Overview
+
+This project is a **Chrome Dino–style running game** controlled entirely by **hand gestures** — no keyboard or mouse needed!
+
+You jump using your **open palm**, detected in real time via your webcam using **MediaPipe** and **OpenCV**.
+The game visuals and physics are built using **Pygame**.
+
+---
+
+### 🧩 Main Features
+
+✅ Hand Gesture Jump (Open Palm → Jump)
+✅ Auto-detect ground level from background image
+✅ Increasing speed and score as game progresses
+✅ Smooth restart after collision
+✅ Real-time webcam window showing gesture detection
+✅ Fully offline — runs locally with camera
+
+---
+
+### 🛠 Requirements
+
+Before running the game, install dependencies:
+
+```bash
+pip install pygame opencv-python mediapipe numpy
+```
+
+---
+
+### 📂 Project Files
+
+| File Name            | Purpose                           |
+| -------------------- | --------------------------------- |
+| `game.py`            | Main game logic + gesture control |
+| `assets/back.png`    | Background image                  |
+| `assets/dino.png`    | Dino sprite image                 |
+
+*(You must have the `assets` folder in the same directory.)*
+
+---
+
+### 🎮 How It Works
+
+#### 1. **Game Setup**
+
+* Initializes Pygame window (900×400).
+* Loads background (`back.png`) and Dino (`dino.png`) images.
+* Detects where the ground is (so the dino stands correctly on it).
+* Spawns random cactus-like obstacles that scroll left.
+
+#### 2. **Camera + Hand Detection**
+
+* Opens webcam using `cv2.VideoCapture(0)`.
+* Uses **MediaPipe Hands** to track your hand landmarks.
+* Checks if **4 or more fingers are raised** → counts as an **open palm**.
+* Displays a second window showing your live camera feed + detected hand skeleton.
+
+#### 3. **Jump Control**
+
+* If an open palm is detected (`open_hand=True`) and the dino is on the ground, it triggers a **jump**.
+* Jump physics:
+
+  * Initial velocity = -13 (upward)
+  * Gravity = 0.8 (pulls down)
+* Smooth jump arc like the Chrome Dino game.
+
+#### 4. **Obstacles & Scoring**
+
+* Random cactus-shaped green obstacles move left.
+* Player score increases as time passes.
+* Game speed increases every few hundred points.
+
+#### 5. **Collision & Restart**
+
+* If dino collides with a cactus:
+
+  * Displays “GAME OVER - Restarting...”
+  * Waits 0.9 seconds
+  * Resets score, obstacles, and speed automatically.
+
+---
+
+### 🧠 Gesture Logic Explained
+
+| Condition                | Meaning                                                | Action    |
+| ------------------------ | ------------------------------------------------------ | --------- |
+| ✋ Open Palm              | 4 or more fingers up                                   | Jump      |
+| ✊ Closed Fist            | Fingers down                                           | No action |
+| 🖐️ Continuous Open Palm | Only first frame triggers jump (no repeated jump spam) |           |
+
+---
+
+### 🪄 Controls Summary
+
+| Action      | How to Perform                    |
+| ----------- | --------------------------------- |
+| Jump        | Show open palm to webcam          |
+| Quit Game   | Press **ESC** or close the window |
+| Quit Camera | Press **ESC** on camera window    |
+
+---
+
+### 💡 Troubleshooting
+
+| Issue                      | Solution                                                              |
+| -------------------------- | --------------------------------------------------------------------- |
+| Camera not opening         | Check webcam connection; use another index like `cv2.VideoCapture(1)` |
+| Error: “Cannot load asset” | Ensure `assets/back.png` and `assets/dino.png` exist                  |
+| Dino not jumping           | Ensure your hand is clearly visible and well-lit                      |
+| Too fast / Too slow        | Adjust `INITIAL_SPEED`, `SPEED_INCREASE_EVERY` in the config section  |
+| Frame stuck / laggy        | Reduce camera resolution or close other apps using webcam             |
+
+---
+
+### 🧾 Code Sections Summary
+
+| Section          | Function                                                          |
+| ---------------- | ----------------------------------------------------------------- |
+| CONFIG           | Screen settings, game speed, and asset paths                      |
+| Gesture Helper   | Uses MediaPipe to detect open hand                                |
+| Utility Function | Detects ground Y-position automatically from background image     |
+| Game Setup       | Initializes images, variables, and starting state                 |
+| Main Loop        | Combines camera input, gesture detection, game logic, and drawing |
+| Cleanup          | Closes camera and game windows properly                           |
+
+---
+
+### 📸 Workshop Flow (Suggested)
+
+1. Run a **camera test** using:
+
+   ```bash
+   python -m cv2
+   ```
+
+   (or use a separate `camera_test.py` to verify webcam works)
+2. Run this game:
+
+   ```bash
+   python gesture_dino_ui.py
+   ```
+3. Show open hand ✋ to jump.
+4. Demonstrate gesture control, score increase, and auto-restart.
+
+---
+
+### 🧰 Tech Stack
+
+* **Python 3.8+**
+* **MediaPipe** – Real-time hand landmark detection
+* **OpenCV** – Webcam capture and visualization
+* **Pygame** – Game engine and rendering
+* **NumPy** – Array math and background analysis
+
+---
+
+### 🏁 Summary
+
+You’ve built a **gesture-controlled Chrome Dino game clone**!
+The Dino runs automatically, and you jump using hand gestures tracked live via your webcam.
+Perfect for workshops, demos, and learning **computer vision + game integration**.
+
