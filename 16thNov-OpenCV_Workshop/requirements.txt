@@ -1,5 +1,0 @@
-Opencv-python
-Numpy
-Mediapipe
-pygame
-cvzone
