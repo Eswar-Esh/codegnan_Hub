@@ -1,0 +1,10 @@
+sounddevice
+scipy
+whisper
+google-generativeai
+python-dotenv
+gtts
+playsound==1.2.2
+pyaudio
+streamlit
+sppechRecognition

@@ -1,0 +1,202 @@
+# 🧠 **Voice-to-Voice AI Assistant (Gemini + Speech Recognition)**
+
+A Python-based voice assistant that listens to your voice, understands your commands, speaks responses, plays YouTube songs, opens websites, and more — using **Google Gemini API**, **Speech Recognition**, and **gTTS**.
+
+---
+
+## 📌 **Project Features**
+
+### 🎤 **Speech-to-Text**
+
+* Uses **Google Speech Recognition** to convert microphone audio into text.
+
+### 🔊 **Text-to-Speech**
+
+* Converts AI responses into speech using **gTTS + playsound**.
+
+### 🤖 **AI Chat (Gemini)**
+
+* Gemini API provides smart, natural, short answers.
+
+### 🎵 **Play Songs from YouTube**
+
+* Say: **“play a song”**, or **“play shape of you”**
+* Opens first YouTube result automatically.
+
+### 🌐 **Open Websites**
+
+* Say: **"open website youtube.com"**, **"open google.com"**
+
+### 📴 **Shutdown Voice Command**
+
+* Say: **“shutdown”** → The assistant stops immediately.
+
+---
+
+# 📁 **Project Structure**
+
+```
+📦 Voice Assistant Project
+│
+├── voice_assistant.py        # Main full voice-to-voice assistant
+├── speech_to_text.py         # Basic demo: record + convert speech to text
+├── text_to_speech.py         # Basic demo: convert text to speech
+├── requirements.txt          # All project dependencies
+└── .env                      # Stores GEMINI_API_KEY (not included)
+```
+
+---
+
+# 📂 **File Descriptions**
+
+### ### 🧠 **1. voice_assistant.py**
+
+The main application that:
+
+* Listens continuously
+* Recognizes voice commands
+* Calls Gemini API
+* Plays YouTube videos
+* Opens websites
+* Speaks responses
+* Supports “shutdown” command
+
+### 🎤 **2. speech_to_text.py**
+
+Standalone script to:
+
+* Record audio
+* Convert microphone audio → text
+* Display output
+
+Useful for testing your microphone.
+
+### 🔊 **3. text_to_speech.py**
+
+Simple script to:
+
+* Convert text → speech
+* Play it using gTTS + playsound
+
+Great for audio output testing.
+
+### 📦 **4. requirements.txt**
+
+Contains all required dependencies:
+
+```
+sounddevice
+scipy
+whisper
+google-generativeai
+python-dotenv
+gtts
+playsound==1.2.2
+pyaudio
+streamlit
+sppechRecognition
+```
+
+---
+
+# ⚙️ **Installation Guide**
+
+### 1️⃣ **Clone / Download Project**
+
+```
+git clone <your-repo-url>
+cd project-folder
+```
+
+### 2️⃣ **Install Dependencies**
+
+```
+pip install -r requirements.txt
+pip install pytube python-vlc
+```
+
+### 3️⃣ **Create `.env` File**
+
+Inside the project folder create:
+
+```
+GEMINI_API_KEY=your_api_key_here
+```
+
+Make sure your Gemini API key is active.
+
+---
+
+# ▶️ **How to Run the Assistant**
+
+Run:
+
+```
+python voice_assistant.py
+```
+
+You will see:
+
+```
+🎧 Microphone ready!
+🤖 Assistant ready. Say 'shutdown' to exit.
+```
+
+Now speak normally.
+
+---
+
+# 🎙 **Available Voice Commands**
+
+### 💬 **General Q&A**
+
+* “What is AI?”
+* “Who is Virat Kohli?”
+* “Explain machine learning.”
+
+### 🎵 **Music Commands**
+
+* “play a song”
+* “play shape of you”
+* “play Bollywood song”
+
+### 🌐 **Website Commands**
+
+* “open website youtube.com”
+* “open website amazon.in”
+* “open website google.com”
+
+### 📴 **Shutdown Command**
+
+Say:
+
+### 👉 **“shutdown”**
+
+→ Assistant: *“Shutting down now. Goodbye!”*
+→ Program exits.
+
+---
+
+# 🔐 **Environment Variables**
+
+* **GEMINI_API_KEY**
+  Required for calling Gemini text generation.
+
+---
+
+# 🧪 **Testing Utilities**
+
+### Test speech input:
+
+```
+python speech_to_text.py
+```
+
+### Test TTS output:
+
+```
+python text_to_speech.py
+```
+### Test the voice assistant
+python voice_assistant.py
+---
